@@ -1,0 +1,70 @@
+<body>
+    <!-- Sidenav -->
+    <% include ../partials/sidebar %>
+    <!-- Main content -->
+    <div class="main-content">
+      <!-- Top navbar -->
+      <% include ../partials/navbar %>
+      <!-- Header -->
+      <% include ../partials/header %>
+      <!-- Page content -->
+      <div class="container-fluid mt--7">
+        <!-- Dark table -->
+        <div class="row mt-5">
+          <div class="col">
+            <div class="card bg-default shadow">
+              <div class="card-header bg-transparent border-0">
+                <h3 class="text-white mb-0">Add User</h3>
+              </div>
+              <form role="form" action="/createUser" method="POST">
+                <div class="form-group">
+                  <div class="input-group input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                    </div>
+                    <input class="form-control" name="name" placeholder="Name" type="text" required>
+                  </div>
+                  <% if (locals.messages && messages.errors && messages.errors.name) { %>
+                    <strong class="invalid-feedback" style="display: block"><%= messages.errors.name %></strong>
+                  <% } %>
+                </div>
+                <div class="form-group">
+                  <div class="input-group input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                    </div>
+                    <input class="form-control" name="username" placeholder="Email" type="email" required>
+                  </div>
+                  <% if (locals.messages && messages.errors && messages.errors.username) { %>
+                    <strong class="invalid-feedback" style="display: block"><%= messages.errors.username %></strong>
+                  <% } %>
+                </div>
+                <div class="form-group">
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                    </div>
+                    <input class="form-control" name="password" placeholder="Password" type="password" required>
+                  </div>
+                  <% if (locals.messages && messages.errors && messages.errors.password) { %>
+                    <strong class="invalid-feedback" style="display: block"><%= messages.errors.password %></strong>
+                  <% } %>
+                </div>
+                <% if (locals.messages && locals.messages.databaseError) { %>
+                  <strong class="invalid-feedback" style="display: block"><%= messages.databaseError %></strong>
+                <% } %>
+                <div class="text-center">
+                  <button class="btn btn-primary mt-4">Create</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- Footer -->
+        <% include ../partials/footer %>
+      </div>
+    </div>
+  
+    <!-- Include scripts -->
+    <% include ../partials/scripts %>
+  </body>

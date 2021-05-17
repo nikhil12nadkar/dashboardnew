@@ -1,0 +1,73 @@
+<body>
+    <!-- Sidenav -->
+    <% include ../partials/sidebar %>
+    <!-- Main content -->
+    <div class="main-content">
+      <!-- Top navbar -->
+      <% include ../partials/navbar %>
+      <!-- Header -->
+      <% include ../partials/header %>
+      <!-- Page content -->
+      <div class="container-fluid mt--7">
+        <div class="row mt-5">
+            <div class="col">
+              <div class="card bg-default shadow">
+                <div class="card-header bg-transparent border-0">
+                  <h3 class="text-white mb-0">Edit User</h3>
+                </div>
+                <form action="/update-profile-info/<%=user[0].id%>" method="POST">
+                <div class="pl-lg-4">
+                    <% if (locals.messages && messages.success) { %>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <%= messages.success %>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <% } %>
+                    <% if (locals.messages && messages.errors && messages.errors.databaseError) { %>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <%= JSON.stringify(messages.errors) %>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <% } %>
+                    <div class="row">
+                    <div class="col-lg-8">
+                        <div class="form-group">
+                        <label class="form-control-label" for="input-name">Name</label>
+                        <input type="text" id="input-name" class="form-control form-control-alternative" name="name" placeholder="Name" value="<%= user && user[0].name %>">
+                        <% if (locals.messages && messages.errors && messages.errors.name) { %>
+                            <strong class="invalid-feedback" style="display: block"><%= messages.errors.name %></strong>
+                        <% } %>
+                        </div>
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="form-group">
+                        <label class="form-control-label" for="input-email">Email address</label>
+                        <input type="email" id="input-email" class="form-control form-control-alternative" name="username" placeholder="jesse@example.com" value="<%= user && user[0].email %>">
+                        <% if (locals.messages && messages.errors && messages.errors.username) { %>
+                            <strong class="invalid-feedback" style="display: block"><%= messages.errors.username %></strong>
+                        <% } %>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 text-center">
+                        <button type="sumit" class="btn btn-success mt-4 mb-4">Save</button>
+                    </div>
+                    </div>
+                </div>
+                </form>
+              </div>
+            </div>
+        </div>
+
+        <% include ../partials/footer %>
+      </div>
+    </div>
+  
+    <!-- Include scripts -->
+
+    <% include ../partials/scripts %>
+  </body>
+  
